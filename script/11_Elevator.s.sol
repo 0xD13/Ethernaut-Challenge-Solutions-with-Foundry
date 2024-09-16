@@ -16,7 +16,6 @@ contract ExploitScript is Script {
     }
 }
 
-
 contract ElevatorAttacker {
     Elevator level11 = Elevator(your_challenge_address);
     bool public floor = true;
