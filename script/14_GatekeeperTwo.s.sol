@@ -9,7 +9,7 @@ contract ExploitScript is Script {
     function run() external {
         vm.startBroadcast();
 
-        GatekeeperTwoAttacker attacker = new GatekeeperTwoAttacker(0xd29260457eaAE655bb0fB38c1594Fc62bF5D903D);    
+        GatekeeperTwoAttacker attacker = new GatekeeperTwoAttacker(your_challenge_address);    
 
         vm.stopBroadcast();
     }
