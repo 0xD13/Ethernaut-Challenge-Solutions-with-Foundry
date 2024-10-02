@@ -13,5 +13,4 @@ docs/
 .env
 
 .DS_Store
-/writeup
 .vscode/settings.json
