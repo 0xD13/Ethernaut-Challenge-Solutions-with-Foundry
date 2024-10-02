@@ -9,7 +9,7 @@
 - 第二道門的 `assembly` 關鍵字可以讓合約去存取 Solidity 非原生的功能。參見 [Solidity Assembly](http://solidity.readthedocs.io/en/v0.4.23/assembly.html)。在這道門的 `extcodesize` 函式，可以用來得到給定地址的合約程式碼長度，你可以在[黃皮書](https://ethereum.github.io/yellowpaper/paper.pdf)的第七章學到更多相關的資訊。
 - `^` 字元在第三個門裡是位元運算 (XOR)，在這裡是為了應用另一個常見的位元運算手段 (參見 [Solidity cheatsheet](http://solidity.readthedocs.io/en/v0.4.23/miscellaneous.html#cheatsheet))。[Coin Flip](https://hackmd.io/@D13/ethernaut3) 關卡也是一個想要破這關很好的參考資料。
 ### 合約內容
-```solidity=
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
@@ -60,15 +60,15 @@ contract GatekeeperTwo {
 上一題也有一樣的條件，用一樣的方法通過即可
 ### 通過 `gateTwo()`
 第二個條件用到 opcode `extcodesize()`，剛剛有提到他會返回目標合約的程式碼長度， 17 行規定合約的程式碼長度要等於 0，這邊我們只要將攻擊合約的 code 都寫在 `constructor()` 就可以繞過長度檢查了。
-```solidity=12
-    modifier gateTwo() {
-        uint256 x;
-        assembly {
-            x := extcodesize(caller())
-        }
-        require(x == 0);
-        _;
+```solidity
+modifier gateTwo() {
+    uint256 x;
+    assembly {
+        x := extcodesize(caller())
     }
+    require(x == 0);
+    _;
+}
 ```
 >[!Tip]
 >合約要部署的時候會被轉成 bytecode，bytecode 會將合約的 function 分成兩種來儲存：
@@ -86,11 +86,11 @@ contract GatekeeperTwo {
 關於這類型的攻擊也可以參考 [WTF Solidity 合约安全: S08. 绕过合约长度检查
 ](https://github.com/AmazingAng/WTF-Solidity/blob/main/S08_ContractCheck/readme.md)
 ### 通過 `gateThree(bytes8 _gateKey)`
-```solidity=21
-    modifier gateThree(bytes8 _gateKey) {
-        require(uint64(bytes8(keccak256(abi.encodePacked(msg.sender)))) ^ uint64(_gateKey) == type(uint64).max);
-        _;
-    }
+```solidity
+modifier gateThree(bytes8 _gateKey) {
+    require(uint64(bytes8(keccak256(abi.encodePacked(msg.sender)))) ^ uint64(_gateKey) == type(uint64).max);
+    _;
+}
 ```
 第三個條件要判斷 `msg.sender`, `_gateKey` 兩個變數經過一些轉換後再做 XOR 運算，出來的答案是否等於 `uint64` 的最大值；就是在問 `A^B == C?` 的問題
 XOR 具有 `A^B=C, A^C=B` 的特性。所以我們只要將 `msg.sender` 與 `type(uint64).max)` 做 XOR 運算就可以得到 `_gateKey`

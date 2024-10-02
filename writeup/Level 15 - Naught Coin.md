@@ -8,7 +8,7 @@ NaughtCoin 是一種 ERC20 代幣，而且你已經持有這些代幣。問題�
 - [ERC20 標準](https://github.com/ethereum/ercs/blob/master/ERCS/erc-20.md)
 - [OpenZeppelin 程式庫](https://github.com/OpenZeppelin/zeppelin-solidity/tree/master/contracts)
 ### 合約內容
-```solidity=
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 

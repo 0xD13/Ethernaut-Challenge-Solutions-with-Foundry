@@ -10,7 +10,7 @@
 - 轉換 wei/ether 單位（參見 `help()` 指令）
 - fallback 方法
 ### 合約內容
-```solidity=
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
@@ -123,21 +123,21 @@ contract EtherUnits {
 `onlyOwner()` 會判斷你是不是 owner，所以還是要先成為 owner 才有辦法提款，尋找可以給 owner 賦值的地方：
 
 22 行雖然可以讓我們變成 owner，但是首先要通過 19 行的每次只能傳入 0.001 ether，又要通過 21 行的總資產大於 owner（第 10 行可以看到 owner 有 1000 ether），太難實現，不考慮這個 function
-```solidity=18
-    function contribute() public payable {
-        require(msg.value < 0.001 ether);
-        contributions[msg.sender] += msg.value;
-        if (contributions[msg.sender] > contributions[owner]) {
-            owner = msg.sender;
-        }
-    }
-```
-34 行的 `receive()` 也有更換 owner 的功能，而且只會判斷轉進去的 ether 大於 0 和發送者的資產大於 0 而已
-```solidity=34
-    receive() external payable {
-        require(msg.value > 0 && contributions[msg.sender] > 0);
+```solidity
+function contribute() public payable {
+    require(msg.value < 0.001 ether);
+    contributions[msg.sender] += msg.value;
+    if (contributions[msg.sender] > contributions[owner]) {
         owner = msg.sender;
     }
+}
+```
+34 行的 `receive()` 也有更換 owner 的功能，而且只會判斷轉進去的 ether 大於 0 和發送者的資產大於 0 而已
+```solidity
+receive() external payable {
+    require(msg.value > 0 && contributions[msg.sender] > 0);
+    owner = msg.sender;
+}
 ```
 這樣我們就可以成功取代 owner，開始實作攻擊合約
 1. 透過 18 行的 `contribute()` 先轉一點錢進去，讓 35 行的判斷會通過

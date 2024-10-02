@@ -53,7 +53,7 @@ Metamask 會跳出要求你給該筆交易授權。授權過後，你會在控�
 >詳細欄位說明可以參考：[ABI-function-fields.md](https://gist.github.com/Ankarrr/899e914701233cc4ddb26f211c2a1731#file-abi-function-fields-md)
 
 題目要求先從 `contract.info()` 開始，呼叫後發現會給你下一個要呼叫的提示，一路跟著提示呼叫 function 就可以過關了。這裡不贅述，附上解題的過程（Chrome Develope Tools）：
-```javascript=
+```javascript
 › await contract.info()
 ‹ 'You will find what you need in infol().'
 › await contract.info1()
@@ -78,7 +78,7 @@ Metamask 會跳出要求你給該筆交易授權。授權過後，你會在控�
 ```
 提交之後，等待一下就會通知過關了。成功後會秀出這支合約的原始碼。
 ### 題目合約
-``` solidity=
+``` solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 

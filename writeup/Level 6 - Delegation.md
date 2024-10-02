@@ -10,7 +10,7 @@
 - fallback 方法(method)
 - 方法(method)的 ID
 ### 合約內容
-```solidity=
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
@@ -65,13 +65,13 @@ Method ID 是函數簽名（Function Signature）經過 Keccak Hash 後的前 4 
 ---
 研究完提示後，看回合約。這題目標是拿到合約 `Delegation` 的 owner，但是這個合約本身沒有修改 owner 的功能，但是另一個合約 `Delegate` 有這個功能。
 所以只要 `Delegation` delegatecall `Delegate` 的 `pwn()`，就可以修改 `Delegation` 的變數 `owner`。而 `Delegation` 的 delegatecall，就在 `fallback()` 之中：
-```solidity=25
-    fallback() external {
-        (bool result,) = address(delegate).delegatecall(msg.data);
-        if (result) {
-            this;
-        }
+```solidity
+fallback() external {
+    (bool result,) = address(delegate).delegatecall(msg.data);
+    if (result) {
+        this;
     }
+}
 ```
 所以我們只要轉帳給 `Delegation` 合約，並且將 `pwn()` 的 Method ID 作為交易資料 `msg.data` 送出即可，轉帳的方法在 [Level 1 - Fallback](https://hackmd.io/@D13/ethernaut1#%E5%A6%82%E4%BD%95%E9%80%8F%E9%81%8E%E8%88%87-ABI-%E4%BA%92%E5%8B%95%E7%99%BC%E9%80%81-ether%EF%BC%9F) 有提過
 用 `call` 來轉帳並帶上參數可以看 [WTF Solidity极简入门: 22. Call](https://github.com/AmazingAng/WTF-Solidity/tree/main/22_Call)

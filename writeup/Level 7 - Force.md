@@ -5,7 +5,7 @@
 ### 通關條件
 這一關的目標是使合約的餘額大於 0
 ### 合約內容
-```solidity=
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 

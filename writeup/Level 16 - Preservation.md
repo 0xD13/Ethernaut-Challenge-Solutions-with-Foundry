@@ -11,7 +11,7 @@
 - 理解儲存變數如何儲存和存取。
 - 理解不同資料類型之間轉換的工作原理
 ### 合約內容
-```solidity=
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 

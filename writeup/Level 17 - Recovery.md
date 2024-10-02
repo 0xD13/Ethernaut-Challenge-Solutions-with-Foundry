@@ -6,7 +6,7 @@
 合約創建者建立了一個非常簡單的代幣工廠合約。任何人都可以輕鬆創建新的代幣。在部署第一個代幣合約後，創建者發送了 0.001 以太幣以獲得更多代幣。他們從此失去了合約地址。
 如果您可以從遺失的合約地址中恢復（或刪除）0.001 以太幣，即完成該挑戰。
 ### 合約內容
-``` solidity=
+``` solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
@@ -72,7 +72,7 @@ contract SimpleToken {
 2. 透過關卡實例地址找到代幣合約地址（8 行）
 3. 呼叫代幣合約的自毀功能（12 行）
     
-``` solidity=
+``` solidity
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.0;
 

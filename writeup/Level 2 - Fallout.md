@@ -6,7 +6,7 @@
 獲得下面合約的所有權來完成這一關
 可能會有用的資訊：Solidity, Remix IDE
 ### 合約內容
-```solidity=
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.6.0;
 

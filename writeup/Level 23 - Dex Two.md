@@ -11,7 +11,7 @@ You will still start with 10 tokens of token1 and 10 of token2. The DEX contract
 How has the swap method been modified?
 
 ### 合約內容
-```solidity=
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
@@ -76,7 +76,7 @@ contract SwappableTokenTwo is ERC20 {
 提示說看 `swap(address from, address to, uint256 amount)` 跟上一關的有什麼不一樣：
 
 Dex2：
-```solidity=23
+```solidity
 function swap(address from, address to, uint256 amount) public {
     require(IERC20(from).balanceOf(msg.sender) >= amount, "Not enough to swap");
     uint256 swapAmount = getSwapAmount(from, to, amount);

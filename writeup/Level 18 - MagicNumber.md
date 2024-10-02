@@ -10,7 +10,7 @@
 
 祝你好運！
 ### 合約內容
-```solidity=
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 

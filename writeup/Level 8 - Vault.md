@@ -6,7 +6,7 @@
 ### 通關條件
 打開金庫(Vault)來通過這一關ㄅ！
 ### 合約內容
-```solidity=
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 

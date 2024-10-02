@@ -5,7 +5,7 @@
 ### 通關條件
 這是一個擲銅板的遊戲。你需要連續地猜對擲出來的結果。為了完成這一關，你需要利用你的超能力，然後連續猜對十次。
 ### 合約內容
-```solidity=
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 

@@ -6,7 +6,7 @@
 合約可以以任何他們想要的方式操縱其他合約所看到的數據。
 基於外部和不受信任的合約邏輯來改變狀態是不安全的。
 ### 合約內容
-``` solidity=
+``` solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
@@ -30,7 +30,7 @@ contract Shop {
 ```
 ## 解題
 這題題目沒有說的很具體，簡單來說這是一個購物合約，我們的目標就是用比定價更低的價格購買到商品。那首先看題目合約中執行購買動作的 `buy()`
-``` solidity=12
+``` solidity
 function buy() public {
     Buyer _buyer = Buyer(msg.sender);
 
@@ -41,7 +41,7 @@ function buy() public {
 }
 ```
 12 行可以看到呼叫合約購買時，會先將以呼叫的地址（`msg.sender`）創建一個新的 `Buyer` 合約。接著 15 行判斷 `_buyer` 是否有足夠的金額和商品是否售出，如果判斷通過會將售出狀態更新，以及把價格修改為購買價格（我猜他是用這個數字有沒有比初始價格 100 還要低去判斷是否通關的）。那 15 行在判斷金額的時候會呼叫 `_buyer.price()`，在第 4 行可以看到他是以介面的方式去創建 `Buyer` 合約
-``` solidity=4
+``` solidity
 interface Buyer {
     function price() external view returns (uint256);
 }

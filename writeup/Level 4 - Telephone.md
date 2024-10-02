@@ -5,7 +5,7 @@
 ### 通關條件
 取得下面合約的所有權，來完成這一關。
 ### 合約內容
-```solidity=
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 

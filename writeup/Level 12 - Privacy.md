@@ -12,7 +12,7 @@
 - 理解 parameter parsing 的原理
 - 理解 casting 的原理
 ### 合約內容
-```solidity=
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
@@ -67,20 +67,20 @@ uint16 valor3 = valor1 + valor2; // 620
 ---
 
 這題解鎖的方法要呼叫 16 行的 `unlock(bytes16 _key)`，它會檢查你輸入的 `_key ` 是否等於 `bytes16(data[2])`
-```solidity=16
-    function unlock(bytes16 _key) public {
-        require(_key == bytes16(data[2]));
-        locked = false;
-    }
+```solidity
+function unlock(bytes16 _key) public {
+    require(_key == bytes16(data[2]));
+    locked = false;
+}
 ```
 所以我們要讀取 `data[2]` 的數值，雖然是 `private` 屬性，但我們還是可以在 storage slot 中找到，只要透過變數的長度去推算即可，這題宣告的變數有：
-```solidity=5
-    bool public locked = true;
-    uint256 public ID = block.timestamp;
-    uint8 private flattening = 10;
-    uint8 private denomination = 255;
-    uint16 private awkwardness = uint16(block.timestamp);
-    bytes32[3] private data;
+```solidity
+bool public locked = true;
+uint256 public ID = block.timestamp;
+uint8 private flattening = 10;
+uint8 private denomination = 255;
+uint16 private awkwardness = uint16(block.timestamp);
+bytes32[3] private data;
 ```
 將變數逐個填入 stroage slot（1 個 slot 可以存放 32 bytes）：
 

@@ -11,7 +11,7 @@
 - 我們預期這個 Elevator(電梯) 合約會被用在一個 Building(大樓) 合約裡
 
 ### 合約內容
-```solidity=
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 

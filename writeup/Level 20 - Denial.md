@@ -6,7 +6,7 @@
 這是一個簡單的錢包，隨著時間的推移，資金會逐漸流失。您可以透過成為提款合夥人慢慢提款。
 如果您可以在所有者調用時拒絕所有者提取資金 `withdraw()`（同時合約仍然有資金，並且交易的 Gas 量為 1M 或更少），您將贏得此級別。
 ### 合約內容
-```solidity=
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 

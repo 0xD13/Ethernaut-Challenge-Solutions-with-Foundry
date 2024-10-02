@@ -12,7 +12,7 @@
 - 了解執行一項操作時如何delegatecall運作以及如何msg.sender表現msg.value。
 - 了解代理模式及其處理儲存變數的方式。
 ### 合約內容
-```solidity=
+```solidity
 
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;

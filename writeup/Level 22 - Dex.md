@@ -20,7 +20,7 @@ Normally, when you make a swap with an ERC20 token, you have to approve the cont
 - Remix might help
 - 「地址」有什麼作用？
 ### 合約內容
-```solidity=
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
@@ -87,7 +87,7 @@ contract SwappableToken is ERC20 {
 
 ### token 的價格是如何計算的？
 在關卡合約的 `getSwapPrice()` 中可以找到：
-```solidity=32
+```solidity
 function getSwapPrice(address from, address to, uint256 amount) public view returns (uint256) {
     return ((amount * IERC20(to).balanceOf(address(this))) / IERC20(from).balanceOf(address(this)));
 }

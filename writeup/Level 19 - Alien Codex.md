@@ -9,7 +9,7 @@
 - 研究 ABI specifications
 - 使用一個非常 狡詐 的手段
 ### 合約內容
-```solidity=
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.5.0;
 
@@ -42,7 +42,7 @@ contract AlienCodex is Ownable {
 }
 ```
 contract `Ownable` 太長，只節錄重點部分：
-```solidity=
+```solidity
 pragma solidity ^0.5.0;
 
 contract Ownable {

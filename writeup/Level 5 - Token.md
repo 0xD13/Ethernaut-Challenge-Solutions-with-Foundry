@@ -8,7 +8,7 @@
 ### 提示
 - 什麽是 odometer?
 ### 合約內容
-```solidity=
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.6.0;
 
@@ -41,17 +41,17 @@ odometer 是指汽車的里程表，達到最大值後再+1便會歸零，這就
 ---
 這題的目標是增加自己的代幣（`balances[msg.sender]`）
 從合約中可以找到變更自己代幣量的只有 12 行的 `transfer(address _to, uint256 _value)`，它會將你手中的代幣減少，並且增加在你要轉去的地址中
-```solidity=12
-    function transfer(address _to, uint256 _value) public returns (bool) {
-        require(balances[msg.sender] - _value >= 0);
-        balances[msg.sender] -= _value;
-        balances[_to] += _value;
-        return true;
-    }
+```solidity
+function transfer(address _to, uint256 _value) public returns (bool) {
+    require(balances[msg.sender] - _value >= 0);
+    balances[msg.sender] -= _value;
+    balances[_to] += _value;
+    return true;
+}
 ```
 我們只要透過這個 function，透過我們輸入的參數造成 overflow，就可以讓手中的代幣不減反增。題目一開始說我們手中的代幣有 20 個，儲存代幣的變數 `balances` 的型態是 `uint256` 
-```solidity=5
-    mapping(address => uint256) balances;
+```solidity
+mapping(address => uint256) balances;
 ```
 `uint256` 的範圍是 $0$ 到 $2^{256}-1$，也就是說我們只要轉出 21 個代幣，就會讓我們的代幣持有量變成 $2^{256}-1$，達到代幣增加的效果。攻擊合約如下：
 ```solidity

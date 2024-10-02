@@ -10,7 +10,7 @@
 - fallback 方法
 - 拋出(throw)/恢復(revert) 的通知
 ### 合約內容
-```solidity=
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.6.12;
 
@@ -45,16 +45,16 @@ contract Reentrance {
 ## 解題
 這題目標是偷走合約裡的所有資產，所以先找到可以轉帳的 function
  19 行的 `withdraw(uint256 _amount)` 中有使用 `msg.sender.call` 來轉帳：
-```solidity=19
-    function withdraw(uint256 _amount) public {
-        if (balances[msg.sender] >= _amount) {
-            (bool result,) = msg.sender.call{value: _amount}("");
-            if (result) {
-                _amount;
-            }
-            balances[msg.sender] -= _amount;
+```solidity
+function withdraw(uint256 _amount) public {
+    if (balances[msg.sender] >= _amount) {
+        (bool result,) = msg.sender.call{value: _amount}("");
+        if (result) {
+            _amount;
         }
+        balances[msg.sender] -= _amount;
     }
+}
 ```
 提款函示 `withdraw(uint256 _amount)` 的流程：
 1. 確認你的餘額（`balances[msg.sender]`）是否大於轉出的金額（`_amount`）
