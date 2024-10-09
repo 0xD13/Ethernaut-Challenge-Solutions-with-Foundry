@@ -129,7 +129,8 @@ level24Wallet.multicall{value: 0.001 ether}(nestedMulticall);
 level24Wallet.execute(msg.sender, 0.002 ether, "");
 level24Wallet.setMaxBalance(uint256(uint160(msg.sender)));
 ```
-最後攻擊合約如下：
+關於 MultiCall 也可以參考 [WTF Solidity极简入门: 55. 多重调用
+](https://github.com/AmazingAng/WTF-Solidity/blob/main/55_MultiCall/readme.md)。最後攻擊合約如下：
 ```solidity
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.0;
